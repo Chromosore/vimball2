@@ -5,7 +5,7 @@
 " Last Change: 2021 jan. 11
 
 
-fun! vimball#package(directory, filename, overwrite)
+fun! vimball#archive(directory, filename, overwrite)
 	if filereadable(a:filename)
 		if a:overwrite
 			call delete(a:filename)
@@ -16,7 +16,7 @@ fun! vimball#package(directory, filename, overwrite)
 		end
 	endif
 
-	call vimball#compressor#compress(a:directory, a:filename)
+	call vimball#archiver#archive(a:directory, a:filename)
 endfun
 
 
@@ -31,12 +31,12 @@ fun! vimball#extract(bufnr, ...)
 
 	let l:dest_dir = home .. '/pack/vimball/' .. fnamemodify(bufname(a:bufnr), ':t:r')
 
-	call vimball#decompressor#extract(a:bufnr, dest_dir)
+	call vimball#extractor#extract(a:bufnr, dest_dir)
 endfun
 
 
 fun! vimball#list(bufnr)
-	let l:iter = vimball#decompressor#iter_archive(a:bufnr)
+	let l:iter = vimball#extractor#iter_archive(a:bufnr)
 
 	let l:entry = iter.next()
 	while l:entry != v:null
