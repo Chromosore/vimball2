@@ -23,7 +23,7 @@ set cpo&vim
 
 " Public API
 com!        -complete=dir -nargs=+ -bang  VimballArchive call vimball#archive(<f-args>, <bang>0)
-com!        -complete=dir -nargs=? -bang  VimballExtract call vimball#extract(bufnr('%'), <f-args>, <bang>0)
+com!        -complete=dir -nargs=? -bang  VimballExtract call vimball#extract(bufnr('%'), <bang>0, <f-args>)
 com!                      -nargs=?        VimballList    call vimball#list(bufnr('%'))
 
 " Legacy API

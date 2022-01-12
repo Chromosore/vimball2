@@ -28,12 +28,10 @@ endfun
 
 fun! vimball#extract(bufnr, ...)
 	if a:0 == 2
-		let l:dest_dir = a:1
-		let l:overwrite = a:2
-	elseif a:0 == 1
-		if type(a:1) == v:t_string
-			let l:dest_dir = a:1
-		elseif type(a:1) == v:t_number
+		let l:overwrite = a:1
+		let l:dest_dir = a:2
+	elseif a:0 == 0 || a:0 == 1
+		if a:0 == 1
 			let l:overwrite = a:1
 		else
 			throw 'vimball: incorrect arguments for function: vimball#extract'
