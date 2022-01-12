@@ -2,9 +2,9 @@
 " for the vim8 era
 "
 " See plugin/vimball.vim or |vimball2| for more details
-" Last Change: 2021 jan. 11
+" Last Change: 2021 jan. 12
 
-setlocal buftype=nofile fmr=[[[,]]] fdm=marker
+setlocal buftype=nofile fmr=[[[,]]] fdm=marker nomodeline
 
 if &fileformat != 'unix'
 	setlocal ma fileformat=unix noma
