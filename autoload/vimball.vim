@@ -27,13 +27,32 @@ endfun
 
 
 fun! vimball#extract(bufnr, ...)
-	if a:0 == 1
+	if a:0 == 2
 		let l:dest_dir = a:1
+		let l:overwrite = a:2
+	elseif a:0 == 1
+		if type(a:1) == v:t_string
+			let l:dest_dir = a:1
+		elseif type(a:1) == v:t_number
+			let l:overwrite = a:1
+		else
+			throw 'vimball: incorrect arguments for function: vimball#extract'
+		end
 	elseif a:0 == 0
 		let l:home = vimball#util#home()
 		let l:dest_dir = home .. '/pack/vimball/' .. fnamemodify(bufname(a:bufnr), ':t:r')
 	else
-		throw 'Vim(call):E118: Too many arguments for function: vimball#extract'
+		throw 'vimball: too many arguments for function: vimball#extract'
+	endif
+
+	if isdirectory(dest_dir)
+		if overwrite
+			call delete(dest_dir, 'rf')
+		elseif &confirm
+			call vimball#util#prompt_rm(dest_dir)
+		else
+			return 1
+		end
 	endif
 
 	call vimball#extractor#extract(a:bufnr, dest_dir)
