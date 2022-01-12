@@ -8,7 +8,9 @@
 fun! vimball#archive(directory, filename, ...)
 	if a:0 == 1
 		let l:overwrite = a:0
-	elseif a:0 != 0
+	elseif a:0 == 0
+		let l:overwrite = 0
+	else
 		throw 'vimball: too many arguments for function: vimball#archive'
 	end
 
@@ -34,9 +36,9 @@ fun! vimball#extract(bufnr, ...)
 		if a:0 == 1
 			let l:overwrite = a:1
 		else
-			throw 'vimball: incorrect arguments for function: vimball#extract'
-		end
-	elseif a:0 == 0
+			let l:overwrite = 0
+		endif
+
 		let l:home = vimball#util#home()
 		let l:dest_dir = home .. '/pack/vimball/' .. fnamemodify(bufname(a:bufnr), ':t:r')
 	else
