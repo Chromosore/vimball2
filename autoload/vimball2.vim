@@ -65,11 +65,13 @@ endfun
 
 
 fun! vimball2#list(bufnr)
+	echohl Title | echo "Vimball Archive Listing" | echohl None
+
 	let l:iter = vimball2#extractor#iter_archive(a:bufnr)
 
 	let l:entry = iter.next()
-	while l:entry != v:null
-		echo entry.filename
+	while l:entry isnot v:null
+		echo printf('%s: %d lines', entry.file.path, entry.file.size)
 		let l:entry = iter.next()
 	endwhile
 endfun
