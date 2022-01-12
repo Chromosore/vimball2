@@ -11,5 +11,5 @@ if &fileformat != 'unix'
 endif
 
 if line('$') > 1
-	call vimball#util#msg("Source this file to extract it! (:so %)")
+	call vimball2#util#msg("Source this file to extract it! (:so %)")
 endif

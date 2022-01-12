@@ -22,14 +22,14 @@ set cpo&vim
 
 
 " Public API
-com!        -complete=dir -nargs=+ -bang  VimballArchive call vimball#archive(<f-args>, <bang>0)
-com!        -complete=dir -nargs=? -bang  VimballExtract call vimball#extract(bufnr('%'), <bang>0, <f-args>)
-com!                      -nargs=?        VimballList    call vimball#list(bufnr('%'))
+com!        -complete=dir -nargs=+ -bang  VimballArchive call vimball2#archive(<f-args>, <bang>0)
+com!        -complete=dir -nargs=? -bang  VimballExtract call vimball2#extract(bufnr('%'), <bang>0, <f-args>)
+com!                      -nargs=?        VimballList    call vimball2#list(bufnr('%'))
 
 " Legacy API
-com! -range -complete=dir -nargs=+ -bang  MkVimball      call vimball#legacy#mk_vimball(<line1>, <line2>, <bang>0, <f-args>)
-com!        -complete=dir -nargs=?        UseVimball     call vimball#extract(bufnr('%'), <f-args>)
-com!        -complete=dir -nargs=*        RmVimball      call vimball#legacy#remove(<f-args>)
+com! -range -complete=dir -nargs=+ -bang  MkVimball      call vimball2#legacy#mk_vimball(<line1>, <line2>, <bang>0, <f-args>)
+com!        -complete=dir -nargs=?        UseVimball     call vimball2#extract(bufnr('%'), <f-args>)
+com!        -complete=dir -nargs=*        RmVimball      call vimball2#legacy#remove(<f-args>)
 
 augroup Vimball
 	au!
