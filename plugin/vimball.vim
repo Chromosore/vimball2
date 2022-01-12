@@ -22,7 +22,7 @@ set cpo&vim
 
 
 " Public API
-com! -range -complete=dir -nargs=+ -bang  VimballArchive call vimball#archive(<f-args>, <bang>0)
+com!        -complete=dir -nargs=+ -bang  VimballArchive call vimball#archive(<f-args>, <bang>0)
 com!        -complete=dir -nargs=?        VimballExtract call vimball#extract(bufnr('%'), <f-args>)
 com!                      -nargs=?        VimballList    call vimball#list(bufnr('%'))
 
