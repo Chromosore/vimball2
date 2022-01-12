@@ -40,7 +40,7 @@ fun! vimball#extract(bufnr, ...)
 		endif
 
 		let l:home = vimball#util#home()
-		let l:dest_dir = home .. '/pack/vimball/' .. fnamemodify(bufname(a:bufnr), ':t:r')
+		let l:dest_dir = home .. '/pack/vimball/start/' .. fnamemodify(bufname(a:bufnr), ':t:r')
 	else
 		throw 'vimball: too many arguments for function: vimball#extract'
 	endif
