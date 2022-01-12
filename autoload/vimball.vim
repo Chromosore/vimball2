@@ -2,7 +2,7 @@
 " for the vim8 era
 "
 " See plugin/vimball.vim or |vimball2| for more details
-" Last Change: 2021 jan. 11
+" Last Change: 2021 jan. 12
 
 
 fun! vimball#archive(directory, filename, overwrite)
@@ -22,14 +22,13 @@ endfun
 
 fun! vimball#extract(bufnr, ...)
 	if a:0 == 1
-		let l:home = a:1
+		let l:dest_dir = a:1
 	elseif a:0 == 0
 		let l:home = vimball#util#home()
+		let l:dest_dir = home .. '/pack/vimball/' .. fnamemodify(bufname(a:bufnr), ':t:r')
 	else
 		throw 'Vim(call):E118: Too many arguments for function: vimball#extract'
 	endif
-
-	let l:dest_dir = home .. '/pack/vimball/' .. fnamemodify(bufname(a:bufnr), ':t:r')
 
 	call vimball#extractor#extract(a:bufnr, dest_dir)
 endfun
