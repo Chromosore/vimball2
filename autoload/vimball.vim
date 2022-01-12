@@ -18,7 +18,7 @@ fun! vimball#archive(directory, filename, ...)
 		elseif &confirm
 			call vimball#util#prompt_rm(a:filename)
 		else
-			return 1
+			throw 'vimball: file exists (add ! to override)'
 		end
 	endif
 
@@ -51,7 +51,7 @@ fun! vimball#extract(bufnr, ...)
 		elseif &confirm
 			call vimball#util#prompt_rm(dest_dir)
 		else
-			return 1
+			throw 'vimball: file exists (add ! to override)'
 		end
 	endif
 
