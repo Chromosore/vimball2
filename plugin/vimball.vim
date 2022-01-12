@@ -31,14 +31,6 @@ com! -range -complete=dir -nargs=+ -bang  MkVimball      call vimball2#legacy#mk
 com!        -complete=dir -nargs=?        UseVimball     call vimball2#extract(bufnr('%'), <f-args>)
 com!        -complete=dir -nargs=*        RmVimball      call vimball2#legacy#remove(<f-args>)
 
-augroup Vimball
-	au!
-	au SourceCmd *.vba.gz,*.vba.bz2,*.vba.zip,*.vba.xz			let s:origfile=expand("%")|if expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|endif|call vimball#Decompress(expand("<amatch>"))|so %|if s:origfile!=expand("<afile>")|close|endif
-	au SourceCmd *.vba											if expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|call vimball#Vimball(1)|close|else|call vimball#Vimball(1)|endif
-	au SourceCmd *.vmb.gz,*.vmb.bz2,*.vmb.zip,*.vmb.xz			let s:origfile=expand("%")|if expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|endif|call vimball#Decompress(expand("<amatch>"))|so %|if s:origfile!=expand("<afile>")|close|endif
-	au SourceCmd *.vmb											if expand("%")!=expand("<afile>") | exe "1sp" fnameescape(expand("<afile>"))|call vimball#Vimball(1)|close|else|call vimball#Vimball(1)|endif
-augroup END
-
 
 let &cpo = s:cpo_save
 unlet s:cpo_save
