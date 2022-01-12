@@ -5,9 +5,15 @@
 " Last Change: 2021 jan. 12
 
 
-fun! vimball#archive(directory, filename, overwrite)
+fun! vimball#archive(directory, filename, ...)
+	if a:0 == 1
+		let l:overwrite = a:0
+	elseif a:0 != 0
+		throw 'vimball: too many arguments for function: vimball#archive'
+	end
+
 	if filereadable(a:filename)
-		if a:overwrite
+		if overwrite
 			call delete(a:filename)
 		elseif &confirm
 			call vimball#util#prompt_rm(a:filename)
