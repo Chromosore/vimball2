@@ -61,6 +61,7 @@ fun! vimball2#extract(bufnr, ...)
 	endif
 
 	call vimball2#extractor#extract(a:bufnr, dest_dir)
+	echo "Files have been extracted to " .. fnamemodify(dest_dir, ':~:.')
 endfun
 
 
