@@ -2,38 +2,50 @@
 " for the vim8 era
 "
 " See plugin/vimball.vim or |vimball2| for more details
-" Last Change: 2021 jan. 14
+" Last Change: 2021 jan. 15
 
 
-let s:header = [
+let vimball2#archiver#archive_header = [
 			\ '" Vimball Archiver',
 			\ 'UseVimball',
 			\ 'finish'
 \]
 
 
-fun! vimball2#archiver#archive(directory, dest_file)
-	let l:dir_files = readdir(a:directory)
-	call writefile(s:header, a:dest_file)
-	call s:archive_recursive_1('', a:directory, dir_files, a:dest_file)
+fun! vimball2#archiver#archive(directory, output_file)
+	call writefile(g:vimball2#archiver#archive_header, a:output_file)
+	call s:archive_recursive(
+				\ fnamemodify(a:directory, ':p'),
+				\ fnamemodify(a:directory, ':p'),
+				\ fnamemodify(a:output_file, ':p'))
 endfun
 
 
-fun! s:archive_recursive(prefix, directory, dest_file)
-	return s:archive_recursive_1(a:prefix, a:directory, readdir(a:directory), a:dest_file)
-endfun
-
-fun! s:archive_recursive_1(prefix, directory, filelist, dest_file)
-	for l:node in a:filelist
-		let l:absnode = a:directory .. '/' .. node
-		let l:relnode = a:prefix .. node
+fun! s:archive_recursive(root, directory, output_file)
+	for l:node in readdir(a:directory)
+		let l:absnode = fnamemodify(a:directory .. node, ':p')
+		if absnode ==# a:output_file
+			continue
+		endif
 
 		if isdirectory(absnode)
-			call s:archive_recursive(relnode .. '/', absnode, a:dest_file)
+			echo a:root absnode
+			call s:archive_recursive(a:root, absnode, a:output_file)
 		else
-			let l:content = readfile(absnode)
-			call writefile([relnode .. "\t[[[1", len(content)], a:dest_file, 'a')
-			call writefile(content, a:dest_file, 'a')
+			echo a:root absnode
+			call vimball2#archiver#archive_file(a:root, absnode, a:output_file)
 		endif
 	endfor
+endfun
+
+
+fun! vimball2#archiver#archive_file(root, filename, output_file)
+	let l:relfile = substitute(
+				\ fnamemodify(a:filename, ':p'),
+				\ '^' .. fnameescape(fnamemodify(a:root, ':p')),
+				\ '', '')
+
+	let l:content = readfile(a:filename)
+	call writefile([relfile .. "\t[[[1", len(content)], a:output_file, 'a')
+	call writefile(content, a:output_file, 'a')
 endfun
