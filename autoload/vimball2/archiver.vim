@@ -13,13 +13,18 @@ let s:header = [
 
 
 fun! vimball2#archiver#archive(directory, dest_file)
+	let l:dir_files = readdir(a:directory)
 	call writefile(s:header, a:dest_file)
-	call s:archive_recursive('', a:directory, a:dest_file)
+	call s:archive_recursive_1('', a:directory, dir_files, a:dest_file)
 endfun
 
 
 fun! s:archive_recursive(prefix, directory, dest_file)
-	for l:node in readdir(a:directory)
+	return s:archive_recursive_1(a:prefix, a:directory, readdir(a:directory), a:dest_file)
+endfun
+
+fun! s:archive_recursive_1(prefix, directory, filelist, dest_file)
+	for l:node in a:filelist
 		let l:absnode = a:directory .. '/' .. node
 		let l:relnode = a:prefix .. node
 
