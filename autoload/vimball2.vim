@@ -18,7 +18,9 @@ fun! vimball2#archive(directory, filename, ...)
 		if overwrite
 			call delete(a:filename)
 		elseif &confirm
-			call vimball2#util#prompt_rm(a:filename)
+			if vimball2#util#prompt_rm(a:filename) == 0
+				return
+			endif
 		else
 			throw 'vimball2: file exists (add ! to override)'
 		end
@@ -54,7 +56,9 @@ fun! vimball2#extract(bufnr, ...)
 		if overwrite
 			call delete(dest_dir, 'rf')
 		elseif &confirm
-			call vimball2#util#prompt_rm(dest_dir)
+			if vimball2#util#prompt_rm(dest_dir) == 0
+				return
+			endif
 		else
 			throw 'vimball2: file exists (add ! to override)'
 		end
