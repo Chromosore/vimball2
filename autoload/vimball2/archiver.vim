@@ -29,10 +29,8 @@ fun! s:archive_recursive(root, directory, output_file)
 		endif
 
 		if isdirectory(absnode)
-			echo a:root absnode
 			call s:archive_recursive(a:root, absnode, a:output_file)
 		else
-			echo a:root absnode
 			call vimball2#archiver#archive_file(a:root, absnode, a:output_file)
 		endif
 	endfor
