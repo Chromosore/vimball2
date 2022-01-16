@@ -49,13 +49,13 @@ fun! vimball2#legacy#mk_vimball(overwrite, filename, ...) range abort
 	call writefile(g:vimball2#archiver#archive_header, a:filename)
 
 	for l:node in getline(a:firstline, a:lastline)
-		if isdirectory(node)
+		if isdirectory(root .. node)
 			echohl WarningMsg
 			echomsg printf('Only files must be specified. Skipping directory %s', node)
 			echohl None
 			continue
 		endif
 
-		call vimball2#archiver#archive_file(root, node, a:filename)
+		call vimball2#archiver#archive_file(root, root .. node, a:filename)
 	endfor
 endfun
