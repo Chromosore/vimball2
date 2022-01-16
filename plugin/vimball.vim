@@ -3,7 +3,6 @@
 "
 " Author: Charles E. Campbell
 " Maintainer: Raphaël Blanchard <raphi@babinux.com>
-" Last Change: 2021 jan. 11
 "
 " Copyright: (c) 2021-2022 by Raphaël Blanchard
 "            (c) 2004-2014 by Charles E. Campbell

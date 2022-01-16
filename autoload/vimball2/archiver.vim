@@ -2,7 +2,6 @@
 " for the vim8 era
 "
 " See plugin/vimball.vim or |vimball2| for more details
-" Last Change: 2021 jan. 15
 
 
 let vimball2#archiver#archive_header = [

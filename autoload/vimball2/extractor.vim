@@ -2,7 +2,6 @@
 " for the vim8 era
 "
 " See plugin/vimball.vim or |vimball2| for more details
-" Last Change: 2021 jan. 12
 
 
 fun! vimball2#extractor#extract(bufnr, dest_dir) abort

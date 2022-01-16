@@ -2,7 +2,6 @@
 " for the vim8 era
 "
 " See plugin/vimball.vim or |vimball2| for more details
-" Last Change: 2021 jan. 16
 
 
 let s:deprecation_msg = 'vimball2: This is a legacy command'
