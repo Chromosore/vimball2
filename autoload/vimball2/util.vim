@@ -12,9 +12,9 @@ fun! vimball2#util#home()
 endfun
 
 fun! vimball2#util#prompt_rm(file)
-	let choice = confirm(
+	let l:choice = confirm(
 				\ printf('Delete %s?', a:file),
-				\ join(['&Yes', '&No'] "\n"))
+				\ join(['&Yes', '&No'], "\n"))
 
 	if choice == 1
 		call delete(a:file, 'rf')
