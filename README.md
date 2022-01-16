@@ -1,6 +1,6 @@
 # vimball2
 
-A rewrite of the vimball extractor by [Dr Chip](www.drchip.org) for the vim8 era
+A rewrite of the vimball extractor by [Dr Chip](https://www.drchip.org/) for the vim8 era
 
 
 ## Architecture
