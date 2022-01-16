@@ -7,7 +7,7 @@
 
 fun! vimball2#archive(directory, filename, ...)
 	if a:0 == 1
-		let l:overwrite = a:0
+		let l:overwrite = a:1
 	elseif a:0 == 0
 		let l:overwrite = 0
 	else
