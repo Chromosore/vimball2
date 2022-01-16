@@ -11,7 +11,7 @@ let vimball2#archiver#archive_header = [
 \]
 
 
-fun! vimball2#archiver#archive(directory, output_file)
+fun! vimball2#archiver#archive(directory, output_file) abort
 	call writefile(g:vimball2#archiver#archive_header, a:output_file)
 	call s:archive_recursive(
 				\ fnamemodify(a:directory, ':p'),
@@ -20,7 +20,7 @@ fun! vimball2#archiver#archive(directory, output_file)
 endfun
 
 
-fun! s:archive_recursive(root, directory, output_file)
+fun! s:archive_recursive(root, directory, output_file) abort
 	for l:node in readdir(a:directory)
 		let l:absnode = fnamemodify(a:directory .. node, ':p')
 		if absnode ==# a:output_file
@@ -36,7 +36,7 @@ fun! s:archive_recursive(root, directory, output_file)
 endfun
 
 
-fun! vimball2#archiver#archive_file(root, filename, output_file)
+fun! vimball2#archiver#archive_file(root, filename, output_file) abort
 	let l:relfile = substitute(
 				\ fnamemodify(a:filename, ':p'),
 				\ '^' .. fnameescape(fnamemodify(a:root, ':p')),

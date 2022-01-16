@@ -24,7 +24,7 @@ fun! vimball2#legacy#remove(file, ...)
 endfun
 
 
-fun! vimball2#legacy#mk_vimball(overwrite, filename, ...) range
+fun! vimball2#legacy#mk_vimball(overwrite, filename, ...) range abort
 	echohl WarningMsg | echomsg s:deprecation_msg | echohl None
 
 	if a:0 == 1
