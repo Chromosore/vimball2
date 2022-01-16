@@ -27,7 +27,7 @@ com!        -complete=dir -nargs=? -bang  VimballExtract call vimball2#extract(b
 com!                      -nargs=?        VimballList    call vimball2#list(bufnr('%'))
 
 " Legacy API
-com! -range -complete=dir -nargs=+ -bang  MkVimball      call vimball2#legacy#mk_vimball(<line1>, <line2>, <bang>0, <f-args>)
+com! -range -complete=dir -nargs=+ -bang  MkVimball      <line1>,<line2>call vimball2#legacy#mk_vimball(<bang>0, <f-args>)
 com!        -complete=dir -nargs=?        UseVimball     call vimball2#extract(bufnr('%'), <f-args>)
 com!        -complete=dir -nargs=*        RmVimball      call vimball2#legacy#remove(<f-args>)
 
