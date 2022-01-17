@@ -28,7 +28,7 @@ com!                      -nargs=?        VimballList    call vimball2#list(bufn
 " Legacy API
 com! -range -complete=dir -nargs=+ -bang  MkVimball      <line1>,<line2>call vimball2#legacy#mk_vimball(<bang>0, <f-args>)
 com!        -complete=dir -nargs=?        UseVimball     call vimball2#extract(bufnr('%'), <f-args>)
-com!        -complete=dir -nargs=*        RmVimball      call vimball2#legacy#remove(<f-args>)
+com!        -complete=dir -nargs=?        RmVimball      call vimball2#legacy#remove(bufname('%'), <f-args>)
 
 
 let &cpo = s:cpo_save
