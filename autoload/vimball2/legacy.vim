@@ -21,6 +21,10 @@ fun! vimball2#legacy#remove(file, ...)
 	let l:directory = path .. '/pack/vimball/start/' .. fnamemodify(a:file, ':t:r')
 	if isdirectory(directory)
 		call vimball2#util#prompt_rm(directory)
+	else
+		echohl ErrorMsg
+		echomsg "vimball2: this vimball isn't installed"
+		echohl None
 	endif
 endfun
 
