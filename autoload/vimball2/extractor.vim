@@ -16,7 +16,7 @@ fun! vimball2#extractor#extract(bufnr, dest_dir) abort
 	while l:entry isnot v:null
 		let l:content = getbufline(a:bufnr, entry.file.start_line, entry.file.end_line)
 
-		let l:filedir = a:dest_dir .. '/' .. fnamemodify(entry.file.path, ':h')
+		let l:filedir = fnamemodify(a:dest_dir .. '/' .. entry.file.path, ':p:h')
 		if !isdirectory(filedir)
 			call mkdir(filedir, 'p')
 		endif
