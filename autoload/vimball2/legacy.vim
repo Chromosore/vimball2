@@ -18,8 +18,9 @@ fun! vimball2#legacy#remove(file, ...)
 		throw 'vimball2: too many arguments for function: vimball2#legacy#remove'
 	endif
 
-	if isdirectory(path .. '/pack/vimball/start/' .. fnamemodify(a:file, ':t:r'))
-		vimball2#util#prompt_rm(directory)
+	let l:directory = path .. '/pack/vimball/start/' .. fnamemodify(a:file, ':t:r')
+	if isdirectory(directory)
+		call vimball2#util#prompt_rm(directory)
 	endif
 endfun
 
