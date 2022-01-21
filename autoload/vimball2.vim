@@ -38,6 +38,8 @@ fun! vimball2#extract(bufnr, ...)
 	if a:0 == 2
 		let l:overwrite = a:1
 		let l:dest_dir = a:2
+
+		let l:plugin = v:false
 	elseif a:0 == 0 || a:0 == 1
 		if a:0 == 1
 			let l:overwrite = a:1
@@ -47,6 +49,8 @@ fun! vimball2#extract(bufnr, ...)
 
 		let l:home = vimball2#util#home()
 		let l:dest_dir = home .. '/pack/vimball/start/' .. fnamemodify(bufname(a:bufnr), ':t:r')
+
+		let l:plugin = v:true
 	else
 		throw 'vimball2: too many arguments for function: vimball2#extract'
 	endif
@@ -65,6 +69,14 @@ fun! vimball2#extract(bufnr, ...)
 
 	call vimball2#extractor#extract(a:bufnr, dest_dir)
 	echo "Files have been extracted to " .. fnamemodify(dest_dir, ':~:.')
+
+	if plugin
+		let l:help_dir = dest_dir .. '/doc'
+		if isdirectory(help_dir)
+			execute 'helptags' help_dir
+			echo "Did helptags"
+		endif
+	endif
 endfun
 
 
