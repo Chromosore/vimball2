@@ -1,0 +1,87 @@
+*vimball2.txt*	A rewrite of the vimball extractor for the vim8 era
+
+1. Introduction                               :	|vimball2|
+2. Vimball Manual  ...........................:	|vimball2-manual|
+   1. Ex API  ................................:	|vimball2-commands|
+   2. Functional API  ........................:	|vimball2-functions|
+      1. API functions  ......................:	|vimball2-api|
+      2. Archiver  ...........................:	|vimball2#archiver|
+      3. Extractor  ..........................:	|vimball2#extractor|
+      4. Legacy API  .........................:	|vimball2#legacy|
+      5. Util functions  .....................:	|vimball2#util|
+3. Why? ......................................: |vimball2-why|
+4. License ...................................: |vimball2-license|
+
+
+==============================================================================
+1. Introduction					*vimball2*
+
+
+==============================================================================
+2. Vimball Manual				*vimball2-manual*
+
+------------------------------------------------------------------------------
+2.1. Ex API					*vimball2-commands*
+
+:VimballArchive					*:VimballArchive*
+
+:VimballExtract					*:VimballExtract*
+
+:VimballList					*:VimballList*
+
+:MkVimball					*:MkVimball*
+
+:UseVimball					*:UseVimball*
+
+:RmVimball					*:RmVimball*
+
+------------------------------------------------------------------------------
+2.2.1. API functions				*vimball2-api*
+
+vimball2#archive()				*vimball2#archive()*
+
+vimball2#extract()				*vimball2#extract()*
+
+vimball2#list()					*vimball2#list()*
+
+------------------------------------------------------------------------------
+2.2.2. Archiver					*vimball2#archiver*
+
+vimball2#archiver#archive()			*vimball2#archiver#archive()*
+
+vimball2#archiver#archive_file()		*vimball2#archiver#archive_file()*
+
+------------------------------------------------------------------------------
+2.2.3. Extractor				*vimball2#extractor*
+
+vimball2#extractor#extract()			*vimball2#extractor#extract()*
+
+vimball2#extractor#iter_archive()		*vimball2#extractor#iter_archive()*
+
+------------------------------------------------------------------------------
+2.2.4. Legacy API				*vimball2#legacy*
+
+vimball2#legacy#remove()			*vimball2#legacy#remove()*
+
+vimball2#legacy#mk_vimball()			*vimball2#legacy#mk_vimball()*
+
+------------------------------------------------------------------------------
+2.2.5. Util functions				*vimball2#util*
+
+vimball2#util#msg()				*vimball2#util#msg()*
+
+vimball2#util#home()				*vimball2#util#home()*
+
+vimball2#util#prompt_rm()			*vimball2#util#prompt_rm()*
+
+
+==============================================================================
+3. Why?						*vimball2-why*
+
+
+==============================================================================
+4. License					*vimball2-license*
+
+
+==============================================================================
+vim:tw=78:ts=8:ft=help
