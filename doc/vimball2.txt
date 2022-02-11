@@ -16,6 +16,21 @@
 ==============================================================================
 1. Introduction					*vimball2*
 
+	vimball2 is a rewrite of the Vimball Extractor by Dr Chip. Check out
+	his website at www.drchip.org.
+
+	This plugin features both an archiver and an extractor.
+
+	If you want to build a vimball archive (why would you, though), do >
+		:VimballArchive dir archive.vba
+<	to package the "dir" directory into the "archive.vba" archive.
+
+	On the other hand, if you want to extract a vimball, do >
+		:VimballExtract archive.vba dir
+<	to extract archive.vba in dir, or just do >
+		:VimballExtract archive.vba
+<	to install archive.vba as a vim8 plugin (see |packages|).
+
 
 ==============================================================================
 2. Vimball Manual				*vimball2-manual*
@@ -77,6 +92,25 @@ vimball2#util#prompt_rm()			*vimball2#util#prompt_rm()*
 
 ==============================================================================
 3. Why?						*vimball2-why*
+
+	When the Vimball Extractor was created, vim8 packages didn't exist
+	yet. It purpose was to solve the plugin distribution and management
+	issue, by distributing plugins as files -- vimball archives -- and
+	having a tool to manage them -- the vimball extractor --, which put
+	the plugin's files in subdirectories of ~/.vim and kept track of which
+	files belong to which archive.
+
+	Eventually though, other tools like pathogen superseded it, by using a
+	directory-based approach, which made plugin way easier to install and
+	remove.
+
+	Dr Chip stayed in the vim7 era though, and on his website, all of his
+	plugins are distributed as vimball, but I wanted to try them anyway.
+
+	At first, I edited the vimball script, but it was messy and it didn't
+	work on neovim.
+
+	So I build a full blown extractor, and a complete archiver.
 
 
 ==============================================================================
