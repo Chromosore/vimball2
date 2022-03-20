@@ -169,6 +169,11 @@ vimball2#util#prompt_rm()			*vimball2#util#prompt_rm()*
 ==============================================================================
 4. License					*vimball2-license*
 
+	All the files of vimball2 are licensed under the Mozilla Public
+	License 2.0 (MPL 2.0).
+
+	See http://www.mozilla.org/en-US/MPL/2.0/
+
 
 ==============================================================================
 vim:tw=78:ts=8:ft=help
