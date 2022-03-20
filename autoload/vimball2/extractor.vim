@@ -44,15 +44,15 @@ endfun
 
 fun! s:archive_iter_next(state)
 	try
-		let [l:header, l:size] = getbufline(a:state.buffer, a:state.lineno, a:state.lineno + 1)
+		let [l:header, l:stat] = getbufline(a:state.buffer, a:state.lineno, a:state.lineno + 1)
 	catch /^Vim\%((\a\+)\)\=:E688/
 		return v:null
 	endtry
 
-	let l:size = str2nr(size)
-	let l:filepath     = substitute(header,   '\V\t[[[1\$', '',  '')
-	let l:filepath     = substitute(filepath, '\\',         '/', 'g')
-	let l:fileencoding = matchstr(header, '\v^\d+\s*\zs\S{-}\ze$')
+	let l:filepath     = substitute(header,    '\V\t[[[1\$', '',  '')
+	let l:filepath     = substitute(filepath,  '\\',         '/', 'g')
+	let l:size         = str2nr(matchstr(stat, '^\d\+'))
+	let s:fileencoding = matchstr(stat,        '^\d\+\s*\zs\S\+')
 
 	let l:entry = {}
 	let l:entry.file = {}
