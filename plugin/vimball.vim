@@ -1,13 +1,12 @@
 " vimball2 - A rewrite of the vimball extractor by Dr Chip (www.drchip.org)
 " for the vim8 era
 "
-" Author: Charles E. Campbell
-" Maintainer: Raphaël Blanchard <raphi@babinux.com>
+" Author: Raphaël Blanchard <raphi@babinux.com>
 "
 " Copyright: (c) 2021-2022 by Raphaël Blanchard
-"            (c) 2004-2014 by Charles E. Campbell
-"            The VIM LICENSE applies to Vimball.vim, and Vimball.txt
-"            (see |copyright|) except use "Vimball" instead of "Vim".
+"            The Mozilla Public License 2.0 applies to all of the files of
+"            vimball2 project.
+"            See LICENSE.txt for a copy of this license.
 "            No warranty, express or implied.
 "  *** ***   Use At-Your-Own-Risk!   *** ***
 
