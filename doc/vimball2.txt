@@ -31,6 +31,9 @@
 		:VimballExtract archive.vba
 <	to install archive.vba as a vim8 plugin (see |packages|).
 
+	Some of the ex commands are inherited from the original Vimball
+	Extractor and were only kept to have a decent compatibility with it.
+
 
 ==============================================================================
 2. Vimball Manual				*vimball2-manual*
@@ -38,17 +41,67 @@
 ------------------------------------------------------------------------------
 2.1. Ex API					*vimball2-commands*
 
-:VimballArchive					*:VimballArchive*
+:VimballArchive[!] {dir} {file}			*:VimballArchive*
+		Create a new archive holding the content of {dir} and save it
+		to {file}.
 
-:VimballExtract					*:VimballExtract*
+		If {file} already exists, an error will be raised.
+		If ! was specified though, the file will be overwritten.
+
+:VimballExtract[!] [dir]			*:VimballExtract*
+		Extract the archive opened in the current buffer and put it in
+		[dir]. If no [dir] was specified, the archive will be
+		extracted in a directory suitable for plugins, namely in the
+		first directory of the 'runtimepath', under pack/vimball/start.
+
+		If [dir] already exists, an error will be raised, unless ! was
+		specified, in which case [dir] will be deleted first.
+
+		This allows to quickly install a vimball as a vim8 plugin that
+		will get loaded on startup. See |packages| for more details.
 
 :VimballList					*:VimballList*
+		List the content of the archive opened in the current buffer.
 
-:MkVimball					*:MkVimball*
+:[range]MkVimball[!] {file} [root]		*:MkVimball*
+		Create a new archive from the files specified in [range] and
+		save it to {file}.
+		If [root] is specified, the paths in [range] are treated as
+		relative to this directory instead of the current directory.
 
-:UseVimball					*:UseVimball*
+		[range] defaults to the current line.
 
-:RmVimball					*:RmVimball*
+		If {file} already exists, an error will be raised.
+		If ! was specified though, the file will be overwritten.
+
+		This command is one of the commands inherited from the Vimball
+		Extractor. It is particularly useful if you want to create an
+		archive from a well known set of files, especially as
+		:VimballArchive doesn't provide a way to include or exclude
+		files based on patterns.
+
+:UseVimball[!] [dir]				*:UseVimball*
+		This command is provided for compatibility with the Vimball
+		Extractor and the vimball file format.
+		See |:VimballExtract|.
+
+:RmVimball [root]				*:RmVimball*
+		Remove a vimball installed by |:VimballExtract|. The archive
+		must be opened in the current buffer (or a file with the same
+		name) to determine where it was installed.
+
+		If [root] is specified, it will search for the installed
+		vimball under this directory.
+
+		Because vimball extract archives in their own directories,
+		this command just removes the directory entirely, even
+		deleting files that don't belong to the archive.
+		This might change in the future, though.
+
+		This command is inherited from the Vimball Extractor, and it
+		is mainly here for this reason. However, I find it quite
+		useful when I remove a vimball that I've just installed,
+		because I don't have to find it manually.
 
 ------------------------------------------------------------------------------
 2.2.1. API functions				*vimball2-api*
