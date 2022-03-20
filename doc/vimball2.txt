@@ -110,7 +110,7 @@ vimball2#util#prompt_rm()			*vimball2#util#prompt_rm()*
 	At first, I edited the vimball script, but it was messy and it didn't
 	work on neovim.
 
-	So I build a full blown extractor, and a complete archiver.
+	So I built a full blown extractor, and a complete archiver.
 
 
 ==============================================================================
