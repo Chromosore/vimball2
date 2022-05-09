@@ -52,7 +52,7 @@ fun! s:archive_iter_next(state)
 	let l:filepath     = substitute(header,    '\V\t[[[1\$', '',  '')
 	let l:filepath     = substitute(filepath,  '\\',         '/', 'g')
 	let l:size         = str2nr(matchstr(stat, '^\d\+'))
-	let s:fileencoding = matchstr(stat,        '^\d\+\s*\zs\S\+')
+	let l:fileencoding = matchstr(stat,        '^\d\+\s*\zs\S\+')
 
 	let l:entry = {}
 	let l:entry.file = {}
