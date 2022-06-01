@@ -8,7 +8,6 @@
       2. Archiver  ...........................:	|vimball2#archiver|
       3. Extractor  ..........................:	|vimball2#extractor|
       4. Legacy API  .........................:	|vimball2#legacy|
-      5. Util functions  .....................:	|vimball2#util|
 3. Why? ......................................: |vimball2-why|
 4. License ...................................: |vimball2-license|
 
@@ -52,7 +51,8 @@
 		Extract the archive opened in the current buffer and put it in
 		[dir]. If no [dir] was specified, the archive will be
 		extracted in a directory suitable for plugins, namely in the
-		first directory of the 'runtimepath', under pack/vimball/start.
+		first directory of the 'runtimepath', under the directory
+		"pack/vimball/start".
 
 		If [dir] already exists, an error will be raised, unless ! was
 		specified, in which case [dir] will be deleted first.
@@ -104,43 +104,138 @@
 		because I don't have to find it manually.
 
 ------------------------------------------------------------------------------
+2.2. Functional API				*vimball2-functions*
+
+		The features of vimball2 are also accessible via functions.
+		There are two kinds of function: the API functions and the
+		lower-level module-specific functions.
+
+		The API functions are wrappers around the lower-level
+		functions. They provided a more user-friendly interface.
+
+		On the other hand, the lower-level functions don't do any kind
+		of verification when they are called. They overwrite the
+		destination files and write into existing directory.
+
+------------------------------------------------------------------------------
 2.2.1. API functions				*vimball2-api*
 
-vimball2#archive()				*vimball2#archive()*
+						*vimball2#archive()*
+vimball2#archive({dir}, {file} [, {overwrite}])
+		Archives recursively the content of {dir} into {file}.
+		This is the function powering |:VimballArchive| so it behaves
+		the same way.
 
-vimball2#extract()				*vimball2#extract()*
+		An error is raised if {file} already exists, unless
+		{overwrite} is true.
 
-vimball2#list()					*vimball2#list()*
+						*vimball2#extract()*
+vimball2#extract({buf} [, {overwrite} [, {dir}])
+		Extracts the content of the archive loaded in {buf} into
+		{dir} if it is specified. Else, the archive is extracted into
+		a vim8 package directory. See |runtime-search-path|.
+		This function powers |:VimballExtract| and it behaves in the
+		same way.
+
+		An error is raised if {dir} already exists, unless {overwrite}
+		is true.
+
+vimball2#list({buf})				*vimball2#list()*
+		Lists the files in the archive opened in {buf}.
 
 ------------------------------------------------------------------------------
 2.2.2. Archiver					*vimball2#archiver*
 
-vimball2#archiver#archive()			*vimball2#archiver#archive()*
+					*vimball2#archiver#archive()*
+archiver#archive({dir}, {archive})
+		Archives recursively the files located in {dir} and saves the
+		archive as {archive}.
+		If {archive} already exists, the files will be appended to the
+		archive.
 
-vimball2#archiver#archive_file()		*vimball2#archiver#archive_file()*
+		There is currently no way to specify includes or excludes so
+		you might want to use |vimball2#legacy#mk_vimball()| or write
+		your own archiving routine. See the next two items.
+
+					*vimball2#archiver#archive_file()*
+archiver#archive_file({root}, {file}, {archive})
+		Archives the file {file} into the file {archive}. The path of
+		{file} into the archive is relative to {root}.
+
+		If {archive} already exists, the file will be appended to the
+		archive, which enables you to use multiple calls to this
+		function to incrementally build an archive.
+
+					*vimball2#archiver#archive_header*
+archiver#archive_header
+		This is an array of the first three lines that must be written
+		to an archive. When you create a new archive, you need to
+		write these lines before proceeding to archive any file, else
+		it won't be a valid vimball archive.
 
 ------------------------------------------------------------------------------
 2.2.3. Extractor				*vimball2#extractor*
 
-vimball2#extractor#extract()			*vimball2#extractor#extract()*
+					*vimball2#extractor#extract()*
+extractor#extract({buf}, {dir})
+		Extracts the files held into the archive opened in {buf} into
+		the directory {dir}.
 
-vimball2#extractor#iter_archive()		*vimball2#extractor#iter_archive()*
+		If the directory already exists, the files are just added to
+		that directory. If a file in the archive already exists in
+		{dir}, it is overwritten. 
+
+					*vimball2#extractor#iter_archive()*
+extractor#iter_archive({buf})
+		Returns an iterator over the files held into the archive
+		opened in {buf}. If {buf} doesn't hold a file, an error is
+		raised.
+
+		The iterator has a method next() that either returns a file
+		entry or returns v:null, in which case the iterator is over.
+
+		An entry is a dict with the following fields:
+>
+			lineno: number
+			file:
+				path: string
+				encoding: string
+				start_line: number
+				end_line: number
+				size: number
+<
+		The iterator can be used like this:
+>
+		let l:iter = vimball2#extractor#iter_archive(bufnr())
+
+		let l:entry = iter.next()
+		while entry isnot v:null
+			" ... use entry ...
+			" To get content of the file:
+			let l:content = getbufline(a:bufnr, entry.file.start_line, entry.file.end_line)
+
+			let l:entry = iter.next()
+		endwhile
+<
 
 ------------------------------------------------------------------------------
 2.2.4. Legacy API				*vimball2#legacy*
 
-vimball2#legacy#remove()			*vimball2#legacy#remove()*
+legacy#remove({dir} [, {root}])		 *vimball2#legacy#remove()*
+		Removes the directory {root}/pack/vimball/start/{dir}.
+		If {root} isn't specified, the first directory of the
+		'runtimepath' is used
 
-vimball2#legacy#mk_vimball()			*vimball2#legacy#mk_vimball()*
+						*vimball2#legacy#mk_vimball()*
+{range}legacy#mk_vimball({overwrite}, {file}, [, {dir}])
+		Archives the files specified in the current buffer into the
+		archive {file}. The files are relative to {dir} or the current
+		directory if it isn't specified.
+		If {range} is specified, only this portion of the buffer is
+		used.
 
-------------------------------------------------------------------------------
-2.2.5. Util functions				*vimball2#util*
-
-vimball2#util#msg()				*vimball2#util#msg()*
-
-vimball2#util#home()				*vimball2#util#home()*
-
-vimball2#util#prompt_rm()			*vimball2#util#prompt_rm()*
+		If {file} already exists, an error is raised unless
+		{overwrite} is true.
 
 
 ==============================================================================

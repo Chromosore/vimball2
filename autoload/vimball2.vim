@@ -29,11 +29,6 @@ fun! vimball2#archive(directory, filename, ...)
 endfun
 
 
-" Function: vimball2#extract
-" Parameters:
-" 	bufnr: the buffer from which the archive is read
-" 	overwrite?: if true, the dest_dir is overwritten
-" 	destdir?: if specified, the directory in wich the archive is extracted
 fun! vimball2#extract(bufnr, ...)
 	if a:0 == 2
 		let l:overwrite = a:1
