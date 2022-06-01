@@ -43,6 +43,6 @@ fun! vimball2#archiver#archive_file(root, filename, output_file) abort
 				\ '', '')
 
 	let l:content = readfile(a:filename)
-	call writefile([relfile .. "\t[[[1", len(content)], a:output_file, 'a')
+	call writefile([relfile .. "\t[".."[[1", len(content)], a:output_file, 'a')
 	call writefile(content, a:output_file, 'a')
 endfun
