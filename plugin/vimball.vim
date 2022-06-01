@@ -5,7 +5,7 @@
 "
 " Copyright: (c) 2021-2022 by Raphaël Blanchard
 "            The Mozilla Public License 2.0 applies to all of the files of
-"            vimball2 project.
+"            the vimball2 project.
 "            See LICENSE.txt for a copy of this license.
 "            No warranty, express or implied.
 "  *** ***   Use At-Your-Own-Risk!   *** ***
