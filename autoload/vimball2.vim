@@ -82,7 +82,11 @@ fun! vimball2#list(bufnr)
 
 	let l:entry = iter.next()
 	while l:entry isnot v:null
-		echo printf('%s: %d lines', entry.file.path, entry.file.size)
+		if entry.file.size == 1
+			echo printf('%s: 1 line', entry.file.path)
+		else
+			echo printf('%s: %d lines', entry.file.path, entry.file.size)
+		endif
 		let l:entry = iter.next()
 	endwhile
 endfun
