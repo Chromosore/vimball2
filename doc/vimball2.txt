@@ -1,6 +1,6 @@
 *vimball2.txt*	A rewrite of the vimball extractor for the vim8 era
 
-1. Introduction                               :	|vimball2|
+1. Introduction  .............................:	|vimball2|
 2. Vimball Manual  ...........................:	|vimball2-manual|
    1. Ex API  ................................:	|vimball2-commands|
    2. Functional API  ........................:	|vimball2-functions|
@@ -8,8 +8,8 @@
       2. Archiver  ...........................:	|vimball2#archiver|
       3. Extractor  ..........................:	|vimball2#extractor|
       4. Legacy API  .........................:	|vimball2#legacy|
-3. Why? ......................................: |vimball2-why|
-4. License ...................................: |vimball2-license|
+3. Why?  .....................................: |vimball2-why|
+4. License  ..................................: |vimball2-license|
 
 
 ==============================================================================
