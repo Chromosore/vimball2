@@ -4,12 +4,7 @@
 " See plugin/vimball.vim or |vimball2| for more details
 
 
-let s:deprecation_msg = 'vimball2: This is a legacy command'
-
-
 fun! vimball2#legacy#remove(file, ...)
-	echohl WarningMsg | echomsg s:deprecation_msg | echohl None
-
 	if a:0 == 1
 		let l:path = a:1
 	elseif a:0 == 0
@@ -30,8 +25,6 @@ endfun
 
 
 fun! vimball2#legacy#mk_vimball(overwrite, filename, ...) range abort
-	echohl WarningMsg | echomsg s:deprecation_msg | echohl None
-
 	if a:0 == 1
 		let l:root = fnamemodify(a:1, ':p')
 	elseif a:0 == 0
