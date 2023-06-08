@@ -24,10 +24,10 @@
 		:VimballArchive dir archive.vba
 <	to package the "dir" directory into the "archive.vba" archive.
 
-	On the other hand, if you want to extract a vimball, do >
-		:VimballExtract archive.vba dir
+	On the other hand, if you want to extract a vimball, edit it and do >
+		:VimballExtract dir
 <	to extract archive.vba in dir, or just do >
-		:VimballExtract archive.vba
+		:VimballExtract
 <	to install archive.vba as a vim8 plugin (see |packages|).
 
 	Some of the ex commands are inherited from the original Vimball
@@ -57,7 +57,7 @@
 		If [dir] already exists, an error will be raised, unless ! was
 		specified, in which case [dir] will be deleted first.
 
-		This allows to quickly install a vimball as a vim8 plugin that
+		This allows to install quickly  a vimball as a vim8 plugin that
 		will get loaded on startup. See |packages| for more details.
 
 :VimballList					*:VimballList*
