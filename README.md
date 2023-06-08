@@ -5,39 +5,41 @@ A rewrite of the vimball extractor by [Dr Chip](https://www.drchip.org/) for the
 
 ## Architecture
 
-This plugin comports two parts:
+This plugin is split in two independent parts:
  - the archiver
  - the extractor
 
-All of the functionalities are exposed through the same original ex API but
-also new commands and new functions. In fact, the command are basically
+All the features are exposed through the original ex API but
+also through new commands and new functions. In fact, the commands are basically
 frontends for the API functions, which in turn leverage the plugin's core.
 
 
 ## Usage
 
+You can refer to the documentation, this is just a quick summary.
+
  - Ex commands:
     * `:VimballArchive directory filename.vba`: Create an archive of directory
-    amed filename.vba
-    * `:VimballExtract`: Extract the opened archive and put it into
+    named filename.vba
+    * `:VimballExtract`: Extract the opened archive into
         &rtp[1]/pack/vimball/start/
-    * `:VimballExtract directory`: Extract the opened archive and put it into directory
-    * `:VimballList`: Lists the content of the opened archive
+    * `:VimballExtract directory`: Extract the opened archive into directory
+    * `:VimballList`: List the content of the opened archive
  - Functions:
-    * `vimball2#archive(directory, filename, overwrite?)` archives the
+    * `vimball2#archive(directory, filename, overwrite?)`: Archive the
         directory directory into the file filename. If the file exists,
-        behave according to overwrite or &confirm
-    * `vimball2#extract(bufnr, overwrite?, dest_dir?)` extract the archive
-        opened in bufnr into dest_dir. If it it not specified, put it in
+        overwrite if overwrite and ask if &confirm
+    * `vimball2#extract(bufnr, overwrite?, dest_dir?)`: Extract the archive
+        opened in bufnr into dest_dir. If  dest_dir is not specified, it defaults to
         &rtp[1]/pack/vimball/start/$archive
-    * `vimball2#list(bufnr)` lists the content of the archive opened in
+    * `vimball2#list(bufnr)`: List the content of the archive opened in
         bufnr
  - Low level functions
-    * `vimball2#archiver#archive(directory, filename)` always archive,
-        regardless if the filename exists.
-    * `vimball2#extractor#extract(bufnr, dest_dir)` always extract the
-        archive opened in bufnr to dest_dir, regadless if the dest_dir
-        already exists.
+    * `vimball2#archiver#archive(directory, dest_file)` always archive,
+        regardless of the dest_file's already existing.
+    * `vimball2#extractor#extract(bufnr, dest_dir)`: Always extract the
+        archive opened in bufnr into dest_dir, regadless of the dest_dir's
+        already existing.
 
 
 ## Why?
@@ -47,8 +49,8 @@ Well, mostly for fun.
 Actually, I made vimball2 because I stumbled upon Dr Chip's
 [website](www.drchip.org) where he distributes his plugins as vimballs.
 
-If you don't know who it is, it is the author of NetRW, the Zip plugin and
-the Tar plugin for vim. He made all that stuff with *vim 7*. Without all the
+If you don't know them, they are the author of NetRW, the Zip plugin and
+the Tar plugin for vim. They made all that stuff with *vim 7*. Without all the
 shiny brand new features of vim 8, such as packages!
 
 And that's exactly what vimballs were made for. With vim 7, packages weren't
@@ -71,6 +73,6 @@ To achieve this, I had two options:
 1) Patch the original vimball plugin's files to hack in vim 8 support
 2) Make a brand new plugin
 
-You may think that I went for the latter, but I started out with the first
-option. It was just because of the lack of reliability of this solution that
+You may think that I went for the latter, but I actually started with the first
+option. It was just because of unreliability of this solution that I
 wrote an entire plugin for it.
